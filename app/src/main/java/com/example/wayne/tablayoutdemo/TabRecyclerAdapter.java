@@ -26,6 +26,7 @@ public class TabRecyclerAdapter extends RecyclerView.Adapter {
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        // 根据不同的类型返回不同的样式
         if (viewType == VIEW_TYPE_ITEM) {
            final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
             view.post(new Runnable() {
@@ -58,6 +59,7 @@ public class TabRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
+        // item 的类型
         if (position == titles.length) {
             return VIEW_TYPE_FOOTER;
         } else {
