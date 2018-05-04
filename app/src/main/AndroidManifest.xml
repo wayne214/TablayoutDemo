@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".ViewPagerActivity" />
+        <activity android:name=".activity.ViewPagerWithTitleActivity" />
+        <activity android:name=".activity.TabHostActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -18,11 +27,15 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".ViewPagerActivity"></activity>
-        <activity android:name=".activity.ViewPagerWithTitleActivity">
 
-        </activity>
-        <activity android:name=".activity.TabHostActivity">
+        <service
+            android:name=".messenger.MessengerService"
+            android:process=":remote" />
+
+        <activity
+            android:name=".messenger.MessengerActivity"
+            android:label="@string/title_activity_messenger"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
