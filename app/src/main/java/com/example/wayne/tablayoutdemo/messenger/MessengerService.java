@@ -37,6 +37,18 @@ public class MessengerService extends Service {
         }
     }
     // 创建Messenger对象
+    /**
+     * Messenger的两个构造函数
+     *
+     *1、 public Messenger(Handler target) {
+     throw new RuntimeException("Stub!");
+     }
+
+     2、public Messenger(IBinder target) {
+     throw new RuntimeException("Stub!");
+     }
+     *
+     * */
     private final Messenger mMessenger = new Messenger(new MessengerHandler());
     public MessengerService() {
     }

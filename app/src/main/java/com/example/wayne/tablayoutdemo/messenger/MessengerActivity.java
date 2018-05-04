@@ -26,14 +26,19 @@ public class MessengerActivity extends AppCompatActivity {
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder services) {
+            // 使用服务端返回的IBinder创建一个Messenger对象
             mService = new Messenger(services);
-
+            // 创建消息message对象
             Message msg = Message.obtain(null, MyConstants.MSG_FORM_CLIENT);
+            // 创建bundle对象
             Bundle data = new Bundle();
             data.putString("msg", "hello, this is client.");
+            // msg设置数据
             msg.setData(data);
+            // 通过replyTo将Messenger对象返回给服务端
             msg.replyTo = mGetReplyMessenger;
             try {
+                // messenger向服务端发送数据
                 mService.send(msg);
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -47,7 +52,7 @@ public class MessengerActivity extends AppCompatActivity {
         }
     };
 
-    // 处理客户端发来的消息
+    // 处理服务端发来的消息
     private static class MessengerHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -82,11 +87,13 @@ public class MessengerActivity extends AppCompatActivity {
 //        });
 
         Intent intent = new Intent(this,MessengerService.class);
+        // 绑定service
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onDestroy() {
+        // 解除绑定
         unbindService(mConnection);
         super.onDestroy();
     }
